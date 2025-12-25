@@ -1,10 +1,5 @@
-// Load the navbar HTML into the page
-// Use relative path instead of absolute path
-const navbarPath = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-  ? "/includes/navbar.html"
-  : "./includes/navbar.html";
-
-fetch(navbarPath)
+// Load the navbar HTML into the page using absolute path
+fetch("/includes/navbar.html")
   .then(res => {
     if (!res.ok) {
       throw new Error(`HTTP error! status: ${res.status}`);
@@ -16,13 +11,6 @@ fetch(navbarPath)
   })
   .catch(error => {
     console.error('Error loading navbar:', error);
-    // Fallback: try alternate path
-    fetch("includes/navbar.html")
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById("navbar").innerHTML = data;
-      })
-      .catch(err => console.error('Fallback also failed:', err));
   });
 
 // Mobile dropdown toggle
