@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TPCE Website</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+@media (max-aspect-ratio: 16/9) {
+  img { object-fit: contain; }
+}
+@media (min-aspect-ratio: 16/9) {
+  img { object-fit: cover; }
+}
+
+/* ---------- DROPDOWN ---------- */
+.dropdown { position: relative; }
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+}
+.dropdown:hover .dropdown-menu { display: block; }
+
+/* ---------- SLIDER ---------- */
+.events-slider {
+  position: relative;
+  height: 520px;
+}
+
+.place-slider {
+  position: relative;
+  height: 600px;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: none;
+}
+
+.slide.active { display: block; }
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #f3f4f6;
+}
+
+.caption {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  padding: 0.6rem 1rem;
+}
+
+/* Buttons */
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.6);
+  color: white;
+  padding: 0.6rem;
+  border-radius: 999px;
+  cursor: pointer;
+  border: none;
+}
+.prev { left: 10px; }
+.next { right: 10px; }
+
+/* Dots */
+.dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+.dot {
+  width: 10px;
+  height: 10px;
+  background: rgba(255,255,255,0.6);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.dot.active { background: white; }
+
+.pdf-btn {
+  display: inline-block;
+  padding: 10px 16px;
+  background-color: #1e40af;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  margin: 6px 0;
+}
+.pdf-btn:hover {
+  background-color: #1d4ed8;
+}
+
+/* Overlay effect for event images */
+.event-img-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  height: 300px;
+}
+
+.event-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.event-img-wrapper:hover img {
+  transform: scale(1.1);
+}
+
+.event-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  display: flex;
+  align-items: flex-end;
+  padding: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.event-img-wrapper:hover .event-img-overlay {
+  opacity: 1;
+}
+
+.text-outline-black {
+  -webkit-text-stroke: 5px black; /* outline thickness */
+  color: white; /* inner text color */
+}
+
+.text-outline-white {
+  -webkit-text-stroke: 5px white; /* outline color */
+  color: black; /* inner text color (you can change this) */
+}
+
+
+</style>
+</head>
+
+<body class="bg-gradient-to-r from-white to-red-800 text-black">
+
+<div id="navbar"></div>
+ <script src="/includes/navbar.js"></script>
+
+<marquee>*** Scholarships for meritorious and deserving/economically poor students are provided. Early bird offer till June 15th of 2025 for a few management seats for B.Tech CSE(AIML), CSE, ECE available. Interested persons may contact Mr. Sk. Ahmed, Admissions Officer @9985380318, Mr. Mahender Reddy, Administrative Officer @7799116483..</marquee>
+
+<!-- HERO -->
+<section class="relative min-h-screen bg-black justify-center">
+  <img
+    src="pages/images/1.webp"
+    alt="Talla Padmavathi College of Engineering"
+    class="absolute inset-0 w-full h-full object-cover"
+  />
+  
+  <h1 class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 text-4xl md:text-6xl lg:text-7xl font-extrabold text-white text-center">
+    Talla Padmavathi College of Engineering
+  </h1>
+  <h2 class="absolute top-3/4 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 text-xl md:text-2xl lg:text-3xl font-medium text-white text-center">
+    Autonomous | Accredited by NAAC | Approved by AICTE
+  </h2>
+</section>
+
+<!-- LIFE AT TPCE - NEW DESIGN: White background with accent border on left -->
+<section class="bg-white py-20">
+  <div class="max-w-7xl mx-auto px-6">
+    
+    <!-- Section Header with decorative line -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold mb-4 text-gray-900">Life at TPCE</h2>
+      <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto"></div>
+      <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+        Experience vibrant campus life with endless opportunities for growth and innovation
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      
+      <!-- Text Content with left accent border -->
+      <div class="order-2 lg:order-1">
+        <div class="border-l-4 border-blue-600 pl-6 bg-gray-50 p-8 rounded-r-2xl shadow-lg">
+          <p class="text-gray-700 leading-relaxed text-lg">
+            At TPCE, we believe that education extends far beyond textbooks and classrooms. Our vibrant campus life is a tapestry of opportunities designed to nurture well-rounded individuals ready to make their mark in the world. From the moment students step onto our campus, they become part of a dynamic community that celebrates achievement, fosters innovation, and builds lasting memories.          </p>
+          <p class="text-gray-700 leading-relaxed text-lg mt-4">
+            Our students consistently excel in academics and secure prestigious placements . These achievements reflect the dedication of our faculty and the determination of our students. Beyond academics, our campus buzzes with energy through technical festivals, cultural events, hackathons, and student-led initiatives that develop leadership skills and creative thinking.
+          </p>
+          <p class="text-gray-700 leading-relaxed text-lg mt-4">
+            We take pride in creating an environment where every student can explore their passions, whether through cutting-edge research, competitive coding, cultural performances, or sports. At TPCE, we're not just building careers—we're shaping futures. Join us and experience a college life filled with growth, achievement, and unforgettable moments
+          </p>
+        </div>
+      </div>
+
+      <!-- Slider with enhanced styling -->
+      <div class="order-1 lg:order-2">
+        <div class="slider events-slider rounded-2xl shadow-2xl overflow-hidden border-4 border-gray-200" data-slider>
+          <div class="slide active">
+            <!-- Event Image 1 -->
+            <img src="/pages/images/event1.jpg" alt="Tech Fest">
+            <div class="caption text-lg font-semibold"> College days shoot</div>
+          </div>
+          <!-- Event Image 2 -->
+          <div class="slide">
+            <img src="/pages/images/event2.jpg" alt="Cultural Night">
+            <div class="caption text-lg font-semibold"> College days shoot</div>
+          </div>
+          <!-- Event Image 3 -->
+          <div class="slide">
+            <img src="/pages/images/event3.jpeg" alt="Hackathon">
+            <div class="caption text-lg font-semibold"> USA spot admissions</div>
+          </div>
+<!-- Event Image 4 -->
+           <div class="slide">
+            <img src="/pages/images/par5.PNG" alt="Hackathon">
+            <div class="caption text-lg font-semibold"> Industrial Visit</div>
+          </div>
+          <!-- Event Image 5 -->
+
+           <div class="slide">
+            <img src="/pages/images/par6.PNG" alt="Hackathon">
+            <div class="caption text-lg font-semibold"> Aaron Sports meet</div>
+          </div>
+<!-- Event Image 6 -->
+           <div class="slide">
+            <img src="/pages/images/par7.PNG" alt="Hackathon">
+            <div class="caption text-lg font-semibold"> Aha talent hunt</div>
+          </div>
+
+          <div class="slide">
+            <img src="/pages/images/event6.jpg" alt="Hackathon">
+            <div class="caption text-lg font-semibold">Ms.Neha and team won first prize worth ₹25,000 in a project competition</div>
+          </div>
+
+
+           <div class="slide">
+            <img src="/pages/images/par8.PNG" alt="Hackathon">
+            <div class="caption text-lg font-semibold"> Internshala Annual Ranking 2024</div>
+          </div> 
+          
+          <div class="slide">
+            <img src="/pages/images/par9.PNG" alt="Hackathon">
+            <div class="caption text-lg font-semibold"> Genpact Off Campus Drive in association with TASK</div>
+          </div>
+
+
+          <div class="slide">
+            <img src="/pages/images/par10.PNG" alt="Hackathon">
+            <div class="caption text-lg font-semibold"> Jntu Gold medalist</div>
+          </div>
+
+
+          <div class="slide">
+            <img src="/pages/images/par11.PNG" alt="Hackathon">
+            <div class="caption text-lg font-semibold"> On-Campus Placements drive</div>
+          </div>
+
+
+          <div class="slide">
+            <img src="/pages/images/par12.PNG" alt="Hackathon">
+            <div class="caption text-lg font-semibold"> Industrial visit to Infosys</div>
+          </div>
+
+
+          <div class="slide">
+            <img src="/pages/images/par13.PNG" alt="Hackathon">
+            <div class="caption text-lg font-semibold">Thoughtworks Campus placement drive</div>
+          </div>
+
+          <div class="slide">
+            <img src="/pages/images/par14.PNG" alt="Hackathon">
+            <div class="caption text-lg font-semibold"> Yazin Nizar, Pulse 2024</div>
+          </div>
+
+
+           <div class="slide">
+            <img src="/pages/images/par15.PNG" alt="Hackathon">
+            <div class="caption text-lg font-semibold"> Spiders On-campus Drive</div>
+          </div>
+
+          <div class="slide">
+            <img src="/pages/images/par16.PNG" alt="Hackathon">
+            <div class="caption text-lg font-semibold"> DigitalTrust On-campus drive</div>
+          </div>
+
+
+
+          <button class="prev">&#10094;</button>
+          <button class="next">&#10095;</button>
+          <div class="dots"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PLACEMENTS  -->
+<section class="bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 py-20">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
+    <h2 class="text-4xl font-bold text-center mb-4 text-white">Placements</h2>
+    <p class="text-center text-gray-300 mb-12 max-w-2xl mx-auto">Our students have secured positions at leading companies worldwide</p>
+
+    <div class="slider place-slider max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl" data-slider>
+      <div class="slide active">
+        <img src="/pages/images/place9.PNG">
+        <div class="caption">Placed at Infosys</div>
+      </div>
+      <div class="slide">
+        <img src="/pages/images/place1.jpeg">
+        <div class="caption">Placed at Virtusa</div>
+      </div>
+      <div class="slide">
+        <img src="/pages/images/place3.PNG">
+        <div class="caption">Votarytech</div>
+      </div>
+      <div class="slide">
+        <img src="/pages/images/place4.PNG">
+        <div class="caption">Placed at Wipro</div>
+      </div>
+      <div class="slide">
+        <img src="/pages/images/place5.PNG">
+        <div class="caption">Placed at Cognizant</div>
+      </div>
+      <div class="slide">
+        <img src="/pages/images/place2.jpeg">
+        <div class="caption">Placed at Cognizant</div>
+      </div>
+      <div class="slide">
+        <img src="/pages/images/place6.PNG">
+        <div class="caption">Placed at Cognizant</div>
+      </div>
+      <div class="slide">
+        <img src="/pages/images/place7.PNG">
+        <div class="caption">Placed at Cognizant</div>
+      </div>
+      <div class="slide">
+        <img src="/pages/images/place8.PNG">
+        <div class="caption">Placed at Infosys</div>
+      </div>
+      <div class="slide">
+        <img src="/pages/images/place10.PNG">
+        <div class="caption">Placed at Cognizant</div>
+      </div>
+
+      <button class="prev">&#10094;</button>
+      <button class="next">&#10095;</button>
+      <div class="dots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMMES - White background with colorful gradient cards -->
+<section class="bg-white py-20">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-4xl font-bold text-center mb-4 text-gray-900">
+      Programmes We Offer
+    </h2>
+    <p class="text-center text-gray-600 mb-16 max-w-2xl mx-auto">
+      Choose from our diverse range of undergraduate and postgraduate programs
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+      
+      <!-- CSE -->
+      <div class="group bg-gradient-to-br from-blue-50 to-white border-2 border-blue-100 rounded-2xl p-6 text-center
+                  transition-all duration-300
+                  hover:-translate-y-4 hover:scale-105 hover:shadow-2xl hover:border-blue-300">
+        
+        <div class="w-28 h-28 mx-auto rounded-full overflow-hidden mb-4 border-4 border-blue-200 group-hover:border-blue-400 transition-colors">
+          <img src="pages/images/cse.png" class="w-full h-full object-cover">
+        </div>
+
+        <h3 class="font-bold text-lg mb-2 text-gray-900">CSE</h3>
+        <p class="text-sm text-gray-600 mb-4">
+          Computer Science Engineering
+        </p>
+        <a href="pages/academics/syllabus.html">
+
+        <button class="px-4 py-2 text-sm rounded-full bg-blue-600 text-white
+                       hover:bg-blue-700 transition">
+          Know More
+        </a>
+        </button>
+      </div>
+
+      <!-- CSE (AI & ML) -->
+      <div class="group bg-gradient-to-br from-purple-50 to-white border-2 border-purple-100 rounded-2xl p-6 text-center
+                  transition-all duration-300
+                  hover:-translate-y-4 hover:scale-105 hover:shadow-2xl hover:border-purple-300">
+        
+        <div class="w-28 h-28 mx-auto rounded-full overflow-hidden mb-4 border-4 border-purple-200 group-hover:border-purple-400 transition-colors">
+          <img src="pages/images/csm.png" class="w-full h-full object-cover">
+        </div>
+
+        <h3 class="font-bold text-lg mb-2 text-gray-900">CSE(AI & ML)</h3>
+        <p class="text-sm text-gray-600 mb-4">
+          Computer Science Engineering - Artificial Intelligence & Machine Learning
+        </p>
+        <a href="pages/academics/syllabus.html">
+
+        <button class="px-4 py-2 text-sm rounded-full bg-purple-600 text-white
+                       hover:bg-purple-700 transition">
+          Know More
+        </a>
+        </button>
+      </div>
+
+      <!-- ECE -->
+      <div class="group bg-gradient-to-br from-green-50 to-white border-2 border-green-100 rounded-2xl p-6 text-center
+                  transition-all duration-300
+                  hover:-translate-y-4 hover:scale-105 hover:shadow-2xl hover:border-green-300">
+        
+        <div class="w-28 h-28 mx-auto rounded-full overflow-hidden mb-4 border-4 border-green-200 group-hover:border-green-400 transition-colors">
+          <img src="pages/images/ece.png" class="w-full h-full object-cover">
+        </div>
+
+        <h3 class="font-bold text-lg mb-2 text-gray-900">ECE</h3>
+        <p class="text-sm text-gray-600 mb-4">
+          Electronics and Communication Engineering
+        </p>
+        <a href="pages/academics/syllabus.html">
+
+        <button class="px-4 py-2 text-sm rounded-full bg-green-600 text-white
+                       hover:bg-green-700 transition">
+          Know More
+        </a>
+        </button>
+      </div>
+
+      <!-- MTECH -->
+      <div class="group bg-gradient-to-br from-orange-50 to-white border-2 border-orange-100 rounded-2xl p-6 text-center
+                  transition-all duration-300
+                  hover:-translate-y-4 hover:scale-105 hover:shadow-2xl hover:border-orange-300">
+        
+        <div class="w-28 h-28 mx-auto rounded-full overflow-hidden mb-4 border-4 border-orange-200 group-hover:border-orange-400 transition-colors">
+          <img src="pages/images/mtech.png" class="w-full h-full object-cover">
+        </div>
+
+        <h3 class="font-bold text-lg mb-2 text-gray-900">MTECH</h3>
+        <p class="text-sm text-gray-600 mb-4">
+          Master of Technology
+        </p>
+        <a href="/pages/academics/syllabus.html">
+
+        <button class="px-4 py-2 text-sm rounded-full bg-orange-600 text-white
+                       hover:bg-orange-700 transition">
+          Know More
+        </a>
+        </button>
+      </div>
+
+      <!-- MBA -->
+      <div class="group bg-gradient-to-br from-red-50 to-white border-2 border-red-100 rounded-2xl p-6 text-center
+                  transition-all duration-300
+                  hover:-translate-y-4 hover:scale-105 hover:shadow-2xl hover:border-red-300">
+        
+        <div class="w-28 h-28 mx-auto rounded-full overflow-hidden mb-4 border-4 border-red-200 group-hover:border-red-400 transition-colors">
+          <img src="pages/images/mba.png" class="w-full h-full object-cover">
+        </div>
+
+        <h3 class="font-bold text-lg mb-2 text-gray-900">MBA</h3>
+        <p class="text-sm text-gray-600 mb-4">
+          Master of Business Administration
+        </p>
+        <a href="/pages/academics/syllabus.html">
+
+        <button class="px-4 py-2 text-sm rounded-full bg-red-600 text-white
+                       hover:bg-red-700 transition">
+          Know More
+        </a>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENT HIGHLIGHTS - NEW DESIGN: Gradient background with overlay effects -->
+ <section class="bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 py-20">
+  <div class="max-w-7xl mx-auto px-6">
+    
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold mb-4 text-white">Event Highlights</h2>
+      <div class="w-24 h-1 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto"></div>
+      <p class="text-white mt-4 max-w-2xl mx-auto">
+        Memorable moments from our campus celebrations and activities
+      </p>
+    </div>
+
+    <!-- Grid with hover effects -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <!-- Event Image 1 -->
+      <div class="event-img-wrapper shadow-xl">
+        <img src="pages/images/par2.PNG" alt="Event 1">
+        <div class="event-img-overlay">
+          <div class="text-white">
+            <h3 class="text-xl font-bold mb-2">PULSE 2025</h3>
+            <p class="text-sm">Award ceremony</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Event Image 2 -->
+      <div class="event-img-wrapper shadow-xl">
+        <img src="pages/images/par3.PNG" alt="Event 2">
+        <div class="event-img-overlay">
+          <div class="text-white">
+            <h3 class="text-xl font-bold mb-2">Aaron sports meet 2025</h3>
+            <p class="text-sm">Tug of war sport</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Event Image 3 -->
+      <div class="event-img-wrapper shadow-xl">
+        <img src="pages/images/event11.PNG" alt="Event 3">
+        <div class="event-img-overlay">
+          <div class="text-white">
+            <h3 class="text-xl font-bold mb-2">Student Activities</h3>
+            <p class="text-sm">Building memories that last</p>
+          </div>
+        </div>
+      </div>
+
+
+            <!-- Event Image 4 -->
+      <div class="event-img-wrapper shadow-xl">
+        <img src="pages/images/event12.PNG" alt="Event 3">
+        <div class="event-img-overlay">
+          <div class="text-white">
+            <h3 class="text-xl font-bold mb-2">Student Activities</h3>
+            <p class="text-sm">Building memories that last</p>
+          </div>
+        </div>
+      </div>
+
+            <!-- Event Image 5 -->
+      <div class="event-img-wrapper shadow-xl">
+        <img src="pages/images/event13.PNG" alt="Event 3">
+        <div class="event-img-overlay">
+          <div class="text-white">
+            <h3 class="text-xl font-bold mb-2">Student Activities</h3>
+            <p class="text-sm">Building memories that last</p>
+          </div>
+        </div>
+      </div>
+
+                  <!-- Event Image 5 -->
+      <div class="event-img-wrapper shadow-xl">
+        <img src="pages/images/event10.PNG" alt="Event 3">
+        <div class="event-img-overlay">
+          <div class="text-white">
+            <h3 class="text-xl font-bold mb-2">Student Activities</h3>
+            <p class="text-sm">Building memories that last</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MAP - Minimalist gradient design -->
+<section class="bg-gradient-to-b from-gray-50 to-white py-20">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-4xl font-bold text-center mb-4 text-gray-900">
+      Find Us
+    </h2>
+    <p class="text-center text-gray-600 mb-12">
+      Visit our campus at ORUS, Somidi, Kazipet, Warangal
+    </p>
+
+    <div class="max-w-5xl mx-auto">
+      <iframe
+        class="w-full h-[480px] rounded-3xl shadow-2xl border-4 border-gray-200"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3794.721181844305!2d79.49292229999999!3d17.9917044!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a334e5ddcdd9509%3A0xddf0e871479b4d47!2sTalla%20Padmavathi%20College%20of%20Engineering%20(Autonomous)!5e0!3m2!1sen!2sin!4v1766432514383!5m2!1sen!2sin"
+        style="border:0;"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT US - Split card design -->
+<section class="bg-gradient-to-br from-blue-600 to-blue-800 py-20">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-4xl font-bold text-center mb-16 text-white">
+      reach out to us
+    </h2>
+
+    <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden">
+      <div class="grid md:grid-cols-2">
+        
+        <!-- Left Side - Contact Info -->
+        <div class="bg-gradient-to-br from-blue-700 to-blue-900 p-10 text-white">
+          <h3 class="text-2xl font-bold mb-8">Contact Information</h3>
+          
+          <div class="space-y-6">
+            <div class="flex items-start">
+              <svg class="w-6 h-6 mr-4 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+              </svg>
+              <div>
+                <p class="font-semibold mb-1">Phone</p>
+                <p class="text-blue-200">9988776655</p>
+              </div>
+            </div>
+
+            <div class="flex items-start">
+              <svg class="w-6 h-6 mr-4 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+              <div>
+                <p class="font-semibold mb-1">Email</p>
+                <p class="text-blue-200">tpce@gmail.com</p>
+              </div>
+            </div>
+
+            <div class="flex items-start">
+              <svg class="w-6 h-6 mr-4 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+              <div>
+                <p class="font-semibold mb-1">Address</p>
+                <p class="text-blue-200">TPCE, ORUS, Somidi, Kazipet, Warangal, 600010</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side - CTA -->
+        <div class="p-10 flex flex-col justify-center items-center text-center">
+          <a href="pages/contact.html"
+             class="inline-block px-10 py-4 text-lg rounded-full
+                    bg-blue-600 text-white font-semibold
+                    hover:bg-blue-700 hover:scale-105 transition-all duration-300 shadow-lg">
+            Contact Us Now
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="relative z-10 bg-blue-600 text-white text-center py-6">
+  <p class="text-sm md:text-base">
+    © 2025 Talla Padmavathi College of Engineering. All rights reserved.
+  </p>
+</footer>
+
+<!-- SLIDER JS -->
+<script>
+document.querySelectorAll("[data-slider]").forEach(slider => {
+  const slides = slider.querySelectorAll(".slide");
+  const dotsContainer = slider.querySelector(".dots");
+  const prev = slider.querySelector(".prev");
+  const next = slider.querySelector(".next");
+
+  let index = 0;
+
+  slides.forEach((_, i) => {
+    const dot = document.createElement("div");
+    dot.className = "dot" + (i === 0 ? " active" : "");
+    dot.onclick = () => show(i);
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = dotsContainer.children;
+
+  function show(i) {
+    slides[index].classList.remove("active");
+    dots[index].classList.remove("active");
+    index = i;
+    slides[index].classList.add("active");
+    dots[index].classList.add("active");
+  }
+
+  prev.onclick = () => show((index - 1 + slides.length) % slides.length);
+  next.onclick = () => show((index + 1) % slides.length);
+  setInterval(() => next.onclick(), 3000);
+});
+</script>
+</body>
+</html>

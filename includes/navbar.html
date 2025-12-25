@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TPCE Navigation</title>
+  
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom Styles -->
+  <style>
+    .nav-link {
+      color: #374151;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-link:hover {
+      color: #2563eb;
+    }
+    .dropdown {
+      position: relative;
+    }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 220px;
+      background: white;
+      border-radius: 0.5rem;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+      z-index: 50;
+    }
+    .dropdown-menu a {
+      display: block;
+      padding: 0.6rem 1rem;
+      color: #374151;
+    }
+    .dropdown-menu a:hover {
+      background-color: #f3f4f6;
+    }
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="bg-white border-b shadow-sm">
+  <div class="max-w-full mx-auto px-6 py-3">
+
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <h1 class="text-xl font-bold text-gray-800">TPCE</h1>
+        <img src="/pages/images/logo.PNG" alt="TPCE Logo" class="w-8 h-8">
+      </div>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center space-x-8">
+
+        <a href="/index.html" class="nav-link">Home</a>
+
+        <div class="dropdown">
+          <span class="nav-link cursor-pointer">About</span>
+          <div class="dropdown-menu">
+            <a href="/pages/about/Vision.html">Vision & Mission</a>
+            <a href="/pages/about/Chairman.html">Chairman</a>
+            <a href="/pages/about/Principal.html">Principal</a>
+            <a href="/pages/about/Professors.html">Professors</a>
+            <a href="/pages/about/students.html">Students</a>
+            <a href="/pages/about/directors.html">Directors</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <span class="nav-link cursor-pointer">Academics</span>
+          <div class="dropdown-menu">
+            <a href="/pages/academics/Syllabus.html">Syllabus</a>
+            <a href="/pages/academics/academic calender.html">Academic Calendar</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <span class="nav-link cursor-pointer">Admissions</span>
+          <div class="dropdown-menu">
+            <a href="/pages/admissions/Admissions.html">Overview</a>
+            <a href="/pages/admissions/fee structure.html">Fee Structure</a>
+            <a href="/pages/admissions/Docsub.html">Documents</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <span class="nav-link cursor-pointer">Infrastructure</span>
+          <div class="dropdown-menu">
+            <a href="/pages/Infrastructure.html/Transport.html">Transport</a>
+            <a href="/pages/Infrastructure.html/Hostels.html">Hostels</a>
+            <a href="/pages/Infrastructure.html/Labs.html">Labs</a>
+            <a href="/pages/Infrastructure.html/Library.html">Library</a>
+            <a href="/pages/Infrastructure.html/Sports.html">Sports</a>
+          </div>
+        </div>
+
+        <a href="/pages/Placements.html" class="nav-link">Placements</a>
+        <a href="/pages/Events.html" class="nav-link">Events</a>
+        <a href="/pages/contact.html" class="nav-link">Contact</a>
+      </div>
+
+      <!-- Hamburger -->
+      <button onclick="toggleMenu()" class="md:hidden">
+        <svg class="w-7 h-7 text-gray-700" fill="none" stroke="currentColor" stroke-width="2"
+          viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+<div id="mobileMenu" class="hidden md:hidden mt-4 border-t pt-4 space-y-3">
+
+  <a href="/index.html" class="block nav-link">Home</a>
+
+  <!-- About Dropdown (Mobile) -->
+  <div>
+    <button onclick="toggleDropdown('aboutMenu')" class="w-full text-left nav-link font-semibold">About ▼</button>
+    <div id="aboutMenu" class="hidden pl-4 space-y-2">
+      <a href="/pages/about/Vision.html" class="block nav-link">Vision & Mission</a>
+      <a href="/pages/about/Chairman.html" class="block nav-link">Chairman</a>
+      <a href="/pages/about/Principal.html" class="block nav-link">Principal</a>
+      <a href="/pages/about/Professors.html" class="block nav-link">Professors</a>
+      <a href="/pages/about/students.html" class="block nav-link">Students</a>
+      <a href="/pages/about/directors.html" class="block nav-link">Directors</a>
+    </div>
+  </div>
+
+  <!-- Academics Dropdown -->
+  <div>
+    <button onclick="toggleDropdown('academicsMenu')" class="w-full text-left nav-link font-semibold">Academics ▼</button>
+    <div id="academicsMenu" class="hidden pl-4 space-y-2">
+      <a href="/pages/academics/Syllabus.html" class="block nav-link">Syllabus</a>
+      <a href="/pages/academics/academic calender.html" class="block nav-link">Academic Calendar</a>
+    </div>
+  </div>
+
+  <!-- Admissions Dropdown -->
+  <div>
+    <button onclick="toggleDropdown('admissionsMenu')" class="w-full text-left nav-link font-semibold">Admissions ▼</button>
+    <div id="admissionsMenu" class="hidden pl-4 space-y-2">
+      <a href="/pages/admissions/Admissions.html" class="block nav-link">Overview</a>
+      <a href="/pages/admissions/fee structure.html" class="block nav-link">Fee Structure</a>
+      <a href="/pages/admissions/Docsub.html" class="block nav-link">Documents</a>
+    </div>
+  </div>
+
+  <!-- Infrastructure Dropdown -->
+  <div>
+    <button onclick="toggleDropdown('infraMenu')" class="w-full text-left nav-link font-semibold">Infrastructure ▼</button>
+    <div id="infraMenu" class="hidden pl-4 space-y-2">
+      <a href="/pages/Infrastructure.html/Transport.html" class="block nav-link">Transport</a>
+      <a href="/pages/Infrastructure.html/Hostels.html" class="block nav-link">Hostels</a>
+      <a href="/pages/Infrastructure.html/Labs.html" class="block nav-link">Labs</a>
+      <a href="/pages/Infrastructure.html/Library.html" class="block nav-link">Library</a>
+      <a href="/pages/Infrastructure.html/Sports.html" class="block nav-link">Sports</a>
+    </div>
+  </div>
+
+  <a href="/pages/Placements.html" class="block nav-link">Placements</a>
+  <a href="/pages/Events.html" class="block nav-link">Events</a>
+  <a href="/pages/contact.html" class="block nav-link">Contact</a>
+</div>
+  </div>
+</nav>
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    menu.classList.toggle('hidden');
+  }
+</script>
+
+</body>
+</html>
