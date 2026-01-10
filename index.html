@@ -159,7 +159,11 @@
 </style>
 </head>
 
+
+
+
 <body class="bg-gradient-to-r from-white to-red-800 text-black">
+
   <header class="bg-red-900 text-white px-4 py-4 flex flex-col md:flex-row items-center gap-4 md:gap-0 md:justify-between">
     
     <img src="/pages/images/logo.PNG" alt="Logo" class="h-16" />
@@ -191,19 +195,40 @@
 </marquee>
 
 <!-- HERO -->
-<section class="relative min-h-screen bg-black justify-center">
-  <img
-    src="pages/images/1.webp"
-    alt="Talla Padmavathi College of Engineering"
-    class="absolute inset-0 w-full h-full object-cover"
-  />
+<section class="relative bg-black">
+
+  <div class="events-slider">
+
+    <!-- Slide 1 -->
+    <div class="slide active">
+      <img src="pages/images/1.webp" alt="Campus view">
+      <div class="caption">Talla Padmavathi College of Engineering</div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide">
+      <img src="/pages/images/2.webp" alt="College Building">
+      <div class="caption">State-of-the-art Infrastructure</div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide">
+      <img src="/pages/images/3.webp" alt="Students">
+      <div class="caption">One Step Ahead</div>
+    </div>
+
+    <!-- Controls -->
+    <button class="prev">❮</button>
+    <button class="next">❯</button>
+
+    <!-- Dots -->
+    <div class="dots"></div>
+
+  </div>
+
+</section>
   
-  <h1 class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 text-4xl md:text-6xl lg:text-7xl font-extrabold text-white text-center">
-    Talla Padmavathi College of Engineering
-  </h1>
-  <h2 class="absolute top-3/4 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 text-xl md:text-2xl lg:text-3xl font-medium text-white text-center">
-    Autonomous | Accredited by NAAC | Approved by AICTE
-  </h2>
+
 </section>
 
 <!-- LIFE AT TPCE - NEW DESIGN: White background with accent border on left -->
@@ -729,5 +754,55 @@ document.querySelectorAll("[data-slider]").forEach(slider => {
   setInterval(() => next.onclick(), 3000);
 });
 </script>
+
+<script>
+  const slides = document.querySelectorAll(".events-slider .slide");
+  const prevBtn = document.querySelector(".events-slider .prev");
+  const nextBtn = document.querySelector(".events-slider .next");
+  const dotsContainer = document.querySelector(".events-slider .dots");
+
+  let current = 0;
+
+  // Create dots
+  slides.forEach((_, i) => {
+    const dot = document.createElement("span");
+    dot.classList.add("dot");
+    if (i === 0) dot.classList.add("active");
+    dot.addEventListener("click", () => goToSlide(i));
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = document.querySelectorAll(".dot");
+
+  function showSlide(index) {
+    slides.forEach(slide => slide.classList.remove("active"));
+    dots.forEach(dot => dot.classList.remove("active"));
+
+    slides[index].classList.add("active");
+    dots[index].classList.add("active");
+  }
+
+  function goToSlide(index) {
+    current = index;
+    showSlide(current);
+  }
+
+  nextBtn.addEventListener("click", () => {
+    current = (current + 1) % slides.length;
+    showSlide(current);
+  });
+
+  prevBtn.addEventListener("click", () => {
+    current = (current - 1 + slides.length) % slides.length;
+    showSlide(current);
+  });
+
+  // Auto-slide 
+  setInterval(() => {
+    current = (current + 1) % slides.length;
+    showSlide(current);
+  }, 5000);
+</script>
+
 </body>
 </html>
