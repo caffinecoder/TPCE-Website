@@ -30,13 +30,15 @@
 .dropdown:hover .dropdown-menu { display: block; }
 
 /* ---------- SLIDER ---------- */
-.events-slider {
+.slider {
   position: relative;
+}
+
+.events-slider {
   height: 520px;
 }
 
 .place-slider {
-  position: relative;
   height: 600px;
 }
 
@@ -44,9 +46,14 @@
   position: absolute;
   inset: 0;
   display: none;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 }
 
-.slide.active { display: block; }
+.slide.active { 
+  display: block;
+  opacity: 1;
+}
 
 .slide img {
   width: 100%;
@@ -75,9 +82,14 @@
   border-radius: 999px;
   cursor: pointer;
   border: none;
+  z-index: 10;
 }
 .prev { left: 10px; }
 .next { right: 10px; }
+
+.prev:hover, .next:hover {
+  background: rgba(0,0,0,0.8);
+}
 
 /* Dots */
 .dots {
@@ -87,6 +99,7 @@
   transform: translateX(-50%);
   display: flex;
   gap: 8px;
+  z-index: 10;
 }
 .dot {
   width: 10px;
@@ -145,22 +158,16 @@
 }
 
 .text-outline-black {
-  -webkit-text-stroke: 5px black; /* outline thickness */
-  color: white; /* inner text color */
+  -webkit-text-stroke: 5px black;
+  color: white;
 }
 
 .text-outline-white {
-  -webkit-text-stroke: 5px white; /* outline color */
-  color: black; /* inner text color (you can change this) */
+  -webkit-text-stroke: 5px white;
+  color: black;
 }
-
-
-
 </style>
 </head>
-
-
-
 
 <body class="bg-gradient-to-r from-white to-red-800 text-black">
 
@@ -181,7 +188,6 @@
     </div>
     <div></div>
 
-
   </header>
 
 <div id="navbar"></div>
@@ -196,8 +202,8 @@
 
 <!-- HERO -->
 <section class="relative bg-black">
-
-  <div class="events-slider">
+       
+  <div class="slider events-slider" data-slider="hero">
 
     <!-- Slide 1 -->
     <div class="slide active">
@@ -207,13 +213,19 @@
 
     <!-- Slide 2 -->
     <div class="slide">
-      <img src="/pages/images/2.webp" alt="College Building">
+      <img src="pages/images/2.webp" alt="College Building">
       <div class="caption">State-of-the-art Infrastructure</div>
     </div>
 
     <!-- Slide 3 -->
     <div class="slide">
-      <img src="/pages/images/3.webp" alt="Students">
+      <img src="pages/images/3.webp" alt="Students">
+      <div class="caption">One Step Ahead</div>
+    </div>
+
+   <!-- Slide 4 -->
+    <div class="slide">
+      <img src="pages/images/event4.jpeg" alt="Students">
       <div class="caption">One Step Ahead</div>
     </div>
 
@@ -227,11 +239,8 @@
   </div>
 
 </section>
-  
 
-</section>
-
-<!-- LIFE AT TPCE - NEW DESIGN: White background with accent border on left -->
+<!-- LIFE AT TPCE -->
 <section class="bg-white py-20">
   <div class="max-w-7xl mx-auto px-6">
     
@@ -262,7 +271,7 @@
 
       <!-- Slider with enhanced styling -->
       <div class="order-1 lg:order-2">
-        <div class="slider events-slider rounded-2xl shadow-2xl overflow-hidden border-4 border-gray-200" data-slider>
+        <div class="slider events-slider rounded-2xl shadow-2xl overflow-hidden border-4 border-gray-200" data-slider="life">
           <div class="slide active">
             <!-- Event Image 1 -->
             <img src="pages/images/event1.jpg" alt="Tech Fest">
@@ -351,8 +360,6 @@
             <div class="caption text-lg font-semibold"> DigitalTrust On-campus drive</div>
           </div>
 
-
-
           <button class="prev">&#10094;</button>
           <button class="next">&#10095;</button>
           <div class="dots"></div>
@@ -369,7 +376,7 @@
     <h2 class="text-4xl font-bold text-center mb-4 text-white">Placements</h2>
     <p class="text-center text-gray-300 mb-12 max-w-2xl mx-auto">Our students have secured positions at leading companies worldwide</p>
 
-    <div class="slider place-slider max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl" data-slider>
+    <div class="slider place-slider max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl" data-slider="placements">
       <div class="slide active">
         <img src="pages/images/place9.PNG">
         <div class="caption">Placed at Infosys</div>
@@ -418,7 +425,7 @@
   </div>
 </section>
 
-<!-- PROGRAMMES - White background with colorful gradient cards -->
+<!-- PROGRAMMES -->
 <section class="bg-white py-20">
   <div class="max-w-7xl mx-auto px-6">
     <h2 class="text-4xl font-bold text-center mb-4 text-gray-900">
@@ -428,122 +435,107 @@
       Choose from our diverse range of undergraduate and postgraduate programs
     </p>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+    <!-- Container for centered grid -->
+    <div class="flex flex-col items-center gap-8">
       
-      <!-- CSE -->
-      <div class="group bg-gradient-to-br from-blue-50 to-white border-2 border-blue-100 rounded-2xl p-6 text-center
-                  transition-all duration-300
-                  hover:-translate-y-4 hover:scale-105 hover:shadow-2xl hover:border-blue-300">
+      <!-- Top Row - 3 items -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-4xl">
         
-        <div class="w-28 h-28 mx-auto rounded-full overflow-hidden mb-4 border-4 border-blue-200 group-hover:border-blue-400 transition-colors">
-          <img src="pages/images/cse.png" class="w-full h-full object-cover">
+        <!-- CSE -->
+        <div class="group bg-white border-2 border-gray-300 rounded-2xl p-8 text-center
+                    transition-all duration-300
+                    hover:-translate-y-2 hover:shadow-xl hover:border-blue-400">
+          
+          <h3 class="font-bold text-2xl mb-2 text-gray-900">CSE</h3>
+          <p class="text-sm text-gray-600 mb-6">
+            Computer Science Engineering
+          </p>
+          <a href="pages/academics/syllabus.html">
+            <button class="px-6 py-2 text-sm rounded-full bg-blue-600 text-white
+                           hover:bg-blue-700 transition">
+              Know More
+            </button>
+          </a>
         </div>
 
-        <h3 class="font-bold text-lg mb-2 text-gray-900">CSE</h3>
-        <p class="text-sm text-gray-600 mb-4">
-          Computer Science Engineering
-        </p>
-        <a href="pages/academics/syllabus.html">
-
-        <button class="px-4 py-2 text-sm rounded-full bg-blue-600 text-white
-                       hover:bg-blue-700 transition">
-          Know More
-        </a>
-        </button>
-      </div>
-
-      <!-- CSE (AI & ML) -->
-      <div class="group bg-gradient-to-br from-purple-50 to-white border-2 border-purple-100 rounded-2xl p-6 text-center
-                  transition-all duration-300
-                  hover:-translate-y-4 hover:scale-105 hover:shadow-2xl hover:border-purple-300">
-        
-        <div class="w-28 h-28 mx-auto rounded-full overflow-hidden mb-4 border-4 border-purple-200 group-hover:border-purple-400 transition-colors">
-          <img src="pages/images/csm.png" class="w-full h-full object-cover">
+        <!-- CSE (AI & ML) -->
+        <div class="group bg-white border-2 border-gray-300 rounded-2xl p-8 text-center
+                    transition-all duration-300
+                    hover:-translate-y-2 hover:shadow-xl hover:border-purple-400">
+          
+          <h3 class="font-bold text-2xl mb-2 text-gray-900">CSE(AI & ML)</h3>
+          <p class="text-sm text-gray-600 mb-6">
+            Computer Science Engineering - Artificial Intelligence & Machine Learning
+          </p>
+          <a href="pages/academics/syllabus.html">
+            <button class="px-6 py-2 text-sm rounded-full bg-purple-600 text-white
+                           hover:bg-purple-700 transition">
+              Know More
+            </button>
+          </a>
         </div>
 
-        <h3 class="font-bold text-lg mb-2 text-gray-900">CSE(AI & ML)</h3>
-        <p class="text-sm text-gray-600 mb-4">
-          Computer Science Engineering - Artificial Intelligence & Machine Learning
-        </p>
-        <a href="pages/academics/syllabus.html">
-
-        <button class="px-4 py-2 text-sm rounded-full bg-purple-600 text-white
-                       hover:bg-purple-700 transition">
-          Know More
-        </a>
-        </button>
+        <!-- ECE -->
+        <div class="group bg-white border-2 border-gray-300 rounded-2xl p-8 text-center
+                    transition-all duration-300
+                    hover:-translate-y-2 hover:shadow-xl hover:border-green-400">
+          
+          <h3 class="font-bold text-2xl mb-2 text-gray-900">ECE</h3>
+          <p class="text-sm text-gray-600 mb-6">
+            Electronics and Communication Engineering
+          </p>
+          <a href="pages/academics/syllabus.html">
+            <button class="px-6 py-2 text-sm rounded-full bg-green-600 text-white
+                           hover:bg-green-700 transition">
+              Know More
+            </button>
+          </a>
+        </div>
       </div>
 
-      <!-- ECE -->
-      <div class="group bg-gradient-to-br from-green-50 to-white border-2 border-green-100 rounded-2xl p-6 text-center
-                  transition-all duration-300
-                  hover:-translate-y-4 hover:scale-105 hover:shadow-2xl hover:border-green-300">
+      <!-- Bottom Row - 2 items -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full max-w-2xl">
         
-        <div class="w-28 h-28 mx-auto rounded-full overflow-hidden mb-4 border-4 border-green-200 group-hover:border-green-400 transition-colors">
-          <img src="pages/images/ece.png" class="w-full h-full object-cover">
+        <!-- MTECH -->
+        <div class="group bg-white border-2 border-gray-300 rounded-2xl p-8 text-center
+                    transition-all duration-300
+                    hover:-translate-y-2 hover:shadow-xl hover:border-orange-400">
+          
+          <h3 class="font-bold text-2xl mb-2 text-gray-900">MTECH</h3>
+          <p class="text-sm text-gray-600 mb-6">
+            Master of Technology
+          </p>
+          <a href="/pages/academics/syllabus.html">
+            <button class="px-6 py-2 text-sm rounded-full bg-orange-600 text-white
+                           hover:bg-orange-700 transition">
+              Know More
+            </button>
+          </a>
         </div>
 
-        <h3 class="font-bold text-lg mb-2 text-gray-900">ECE</h3>
-        <p class="text-sm text-gray-600 mb-4">
-          Electronics and Communication Engineering
-        </p>
-        <a href="pages/academics/syllabus.html">
-
-        <button class="px-4 py-2 text-sm rounded-full bg-green-600 text-white
-                       hover:bg-green-700 transition">
-          Know More
-        </a>
-        </button>
-      </div>
-
-      <!-- MTECH -->
-      <div class="group bg-gradient-to-br from-orange-50 to-white border-2 border-orange-100 rounded-2xl p-6 text-center
-                  transition-all duration-300
-                  hover:-translate-y-4 hover:scale-105 hover:shadow-2xl hover:border-orange-300">
-        
-        <div class="w-28 h-28 mx-auto rounded-full overflow-hidden mb-4 border-4 border-orange-200 group-hover:border-orange-400 transition-colors">
-          <img src="pages/images/mtech.png" class="w-full h-full object-cover">
+        <!-- MBA -->
+        <div class="group bg-white border-2 border-gray-300 rounded-2xl p-8 text-center
+                    transition-all duration-300
+                    hover:-translate-y-2 hover:shadow-xl hover:border-red-400">
+          
+          <h3 class="font-bold text-2xl mb-2 text-gray-900">MBA</h3>
+          <p class="text-sm text-gray-600 mb-6">
+            Master of Business Administration
+          </p>
+          <a href="/pages/academics/syllabus.html">
+            <button class="px-6 py-2 text-sm rounded-full bg-red-600 text-white
+                           hover:bg-red-700 transition">
+              Know More
+            </button>
+          </a>
         </div>
-
-        <h3 class="font-bold text-lg mb-2 text-gray-900">MTECH</h3>
-        <p class="text-sm text-gray-600 mb-4">
-          Master of Technology
-        </p>
-        <a href="/pages/academics/syllabus.html">
-
-        <button class="px-4 py-2 text-sm rounded-full bg-orange-600 text-white
-                       hover:bg-orange-700 transition">
-          Know More
-        </a>
-        </button>
       </div>
 
-      <!-- MBA -->
-      <div class="group bg-gradient-to-br from-red-50 to-white border-2 border-red-100 rounded-2xl p-6 text-center
-                  transition-all duration-300
-                  hover:-translate-y-4 hover:scale-105 hover:shadow-2xl hover:border-red-300">
-        
-        <div class="w-28 h-28 mx-auto rounded-full overflow-hidden mb-4 border-4 border-red-200 group-hover:border-red-400 transition-colors">
-          <img src="pages/images/mba.png" class="w-full h-full object-cover">
-        </div>
-
-        <h3 class="font-bold text-lg mb-2 text-gray-900">MBA</h3>
-        <p class="text-sm text-gray-600 mb-4">
-          Master of Business Administration
-        </p>
-        <a href="/pages/academics/syllabus.html">
-
-        <button class="px-4 py-2 text-sm rounded-full bg-red-600 text-white
-                       hover:bg-red-700 transition">
-          Know More
-        </a>
-        </button>
-      </div>
     </div>
   </div>
 </section>
 
-<!-- EVENT HIGHLIGHTS - NEW DESIGN: Gradient background with overlay effects -->
+<!-- EVENT HIGHLIGHTS -->
  <section class="bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 py-20">
   <div class="max-w-7xl mx-auto px-6">
     
@@ -592,8 +584,7 @@
         </div>
       </div>
 
-
-            <!-- Event Image 4 -->
+      <!-- Event Image 4 -->
       <div class="event-img-wrapper shadow-xl">
         <img src="pages/images/event12.PNG" alt="Event 3">
         <div class="event-img-overlay">
@@ -604,7 +595,7 @@
         </div>
       </div>
 
-            <!-- Event Image 5 -->
+      <!-- Event Image 5 -->
       <div class="event-img-wrapper shadow-xl">
         <img src="pages/images/event13.PNG" alt="Event 3">
         <div class="event-img-overlay">
@@ -615,7 +606,7 @@
         </div>
       </div>
 
-                  <!-- Event Image 5 -->
+      <!-- Event Image 6 -->
       <div class="event-img-wrapper shadow-xl">
         <img src="pages/images/event10.PNG" alt="Event 3">
         <div class="event-img-overlay">
@@ -630,7 +621,7 @@
   </div>
 </section>
 
-<!-- MAP - Minimalist gradient design -->
+<!-- MAP -->
 <section class="bg-gradient-to-b from-gray-50 to-white py-20">
   <div class="max-w-7xl mx-auto px-6">
     <h2 class="text-4xl font-bold text-center mb-4 text-gray-900">
@@ -652,7 +643,7 @@
   </div>
 </section>
 
-<!-- CONTACT US - Split card design -->
+<!-- CONTACT US -->
 <section class="bg-gradient-to-br from-blue-600 to-blue-800 py-20">
   <div class="max-w-7xl mx-auto px-6">
     <h2 class="text-4xl font-bold text-center mb-16 text-white">
@@ -722,58 +713,29 @@
   </p>
 </footer>
 
-<!-- SLIDER JS -->
+<!-- UNIFIED SLIDER JS -->
 <script>
-document.querySelectorAll("[data-slider]").forEach(slider => {
-  const slides = slider.querySelectorAll(".slide");
-  const dotsContainer = slider.querySelector(".dots");
-  const prev = slider.querySelector(".prev");
-  const next = slider.querySelector(".next");
+// Initialize all sliders independently
+document.querySelectorAll("[data-slider]").forEach(sliderContainer => {
+  const slides = sliderContainer.querySelectorAll(".slide");
+  const dotsContainer = sliderContainer.querySelector(".dots");
+  const prevBtn = sliderContainer.querySelector(".prev");
+  const nextBtn = sliderContainer.querySelector(".next");
+  
+  let currentIndex = 0;
+  let autoSlideInterval;
 
-  let index = 0;
-
-  slides.forEach((_, i) => {
-    const dot = document.createElement("div");
-    dot.className = "dot" + (i === 0 ? " active" : "");
-    dot.onclick = () => show(i);
-    dotsContainer.appendChild(dot);
-  });
-
-  const dots = dotsContainer.children;
-
-  function show(i) {
-    slides[index].classList.remove("active");
-    dots[index].classList.remove("active");
-    index = i;
-    slides[index].classList.add("active");
-    dots[index].classList.add("active");
-  }
-
-  prev.onclick = () => show((index - 1 + slides.length) % slides.length);
-  next.onclick = () => show((index + 1) % slides.length);
-  setInterval(() => next.onclick(), 3000);
-});
-</script>
-
-<script>
-  const slides = document.querySelectorAll(".events-slider .slide");
-  const prevBtn = document.querySelector(".events-slider .prev");
-  const nextBtn = document.querySelector(".events-slider .next");
-  const dotsContainer = document.querySelector(".events-slider .dots");
-
-  let current = 0;
-
-  // Create dots
+  // Create dots for this slider
   slides.forEach((_, i) => {
     const dot = document.createElement("span");
-    dot.classList.add("dot");
-    if (i === 0) dot.classList.add("active");
+    dot.className = "dot" + (i === 0 ? " active" : "");
     dot.addEventListener("click", () => goToSlide(i));
     dotsContainer.appendChild(dot);
   });
 
-  const dots = document.querySelectorAll(".dot");
+  const dots = dotsContainer.querySelectorAll(".dot");
 
+  // Show specific slide
   function showSlide(index) {
     slides.forEach(slide => slide.classList.remove("active"));
     dots.forEach(dot => dot.classList.remove("active"));
@@ -782,26 +744,57 @@ document.querySelectorAll("[data-slider]").forEach(slider => {
     dots[index].classList.add("active");
   }
 
+  // Go to specific slide
   function goToSlide(index) {
-    current = index;
-    showSlide(current);
+    currentIndex = index;
+    showSlide(currentIndex);
+    resetAutoSlide();
   }
 
+  // Next slide
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % slides.length;
+    showSlide(currentIndex);
+  }
+
+  // Previous slide
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    showSlide(currentIndex);
+  }
+
+  // Auto-slide functionality
+  function startAutoSlide() {
+    autoSlideInterval = setInterval(nextSlide, 4000); // Change slide every 4 seconds
+  }
+
+  function stopAutoSlide() {
+    clearInterval(autoSlideInterval);
+  }
+
+  function resetAutoSlide() {
+    stopAutoSlide();
+    startAutoSlide();
+  }
+
+  // Event listeners
   nextBtn.addEventListener("click", () => {
-    current = (current + 1) % slides.length;
-    showSlide(current);
+    nextSlide();
+    resetAutoSlide();
   });
 
   prevBtn.addEventListener("click", () => {
-    current = (current - 1 + slides.length) % slides.length;
-    showSlide(current);
+    prevSlide();
+    resetAutoSlide();
   });
 
-  // Auto-slide 
-  setInterval(() => {
-    current = (current + 1) % slides.length;
-    showSlide(current);
-  }, 5000);
+  // Pause auto-slide on hover
+  sliderContainer.addEventListener("mouseenter", stopAutoSlide);
+  sliderContainer.addEventListener("mouseleave", startAutoSlide);
+
+  // Start auto-sliding
+  startAutoSlide();
+});
 </script>
 
 </body>
